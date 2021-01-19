@@ -14,5 +14,10 @@ after_success:
   - docker build -t hankchanocd/multi-server ./server
   - docker build -t hankchanocd/multi-worker ./worker
   # Log into the docker CLI
-  - echo "$DOCKER_PASSWORD" | 
-  # Take those 
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
+  # Take those images and push them to docker hub
+  - docker push hankchanocd/multi-client
+  - docker push hankchanocd/multi-nginx
+  - docker push hankchanocd/multi-server
+  - docker push hankchanocd/multi-worker
+
